@@ -23,10 +23,10 @@
         app:layout_constraintVertical_bias="0.14" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Start Converting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
