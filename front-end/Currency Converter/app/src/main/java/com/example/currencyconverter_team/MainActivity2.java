@@ -59,10 +59,6 @@ public class MainActivity2 extends AppCompatActivity {
 
                 }
 
-
-
-
-
             }
         }
         else {
@@ -71,6 +67,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         }
     }
- 
+
 
 }
