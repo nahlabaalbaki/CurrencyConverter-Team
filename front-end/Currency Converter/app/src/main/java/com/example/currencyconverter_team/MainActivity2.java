@@ -71,17 +71,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         }
     }
-       /* if (lbp_input.isEmpty() && usd_input.isEmpty() ){
-            Toast.makeText(getApplicationContext(),"Please enter an amount", Toast.LENGTH_LONG).show();
-        }
-        else if (!lbp_input.isEmpty() && !usd_input.isEmpty() ){
-            Toast.makeText(getApplicationContext(),"Please choose one currency.", Toast.LENGTH_LONG).show();
-        }
-        else if (!lbp_input.isEmpty() && usd_input.isEmpty() ) {
-            float lbp_int= (float) Integer.parseInt(lbp_input);
-            float usd_int= lbp_int/22000;
-            lbp.setText();
-        }
-*/
+ 
 
 }
