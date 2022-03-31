@@ -1,5 +1,5 @@
 <?php
-
+//Post API
 include("db_info.php");
 
 $amount = $_POST["amount"];
