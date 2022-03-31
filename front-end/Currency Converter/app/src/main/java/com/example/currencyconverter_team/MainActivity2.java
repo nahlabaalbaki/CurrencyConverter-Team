@@ -12,6 +12,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity2 extends AppCompatActivity {
 
     RadioGroup radioGrp;
@@ -24,6 +29,23 @@ public class MainActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
+
+            String result="";
+
+            URL url;
+            HttpURLConnection http;
+
+            try{
+                url = new URL(urls[0]);
+                http = (HttpURLConnection) url.openConnection(); // connection established between our application and API
+                InputStream in = http.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in); // used to read the output of the API
+                int data =  reader.read(); 
+            }
+            catch(Exception e){
+
+            }
+
             return null;
         }
 
@@ -37,7 +59,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        String url="http://localhost/Server.api1.php";
+        String url="http://localhost/Server/api1.php";
 
         DownloadTask task = new DownloadTask();
         task.execute(url);
