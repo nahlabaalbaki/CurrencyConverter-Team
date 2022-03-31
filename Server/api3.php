@@ -1,8 +1,11 @@
 <?php
-// Get API
+//Get API of specific rate
 include("dbinfo.php");
 
-$query = $mysqli->prepare("SELECT * FROM courses;");
+$rate = $_GET["rate"]; 
+
+$query = $mysqli->prepare("SELECT * FROM converter WHERE rate = ?");
+$query->bind_param("i", $rate);
 $query->execute();
 
 $array = $query->get_result();

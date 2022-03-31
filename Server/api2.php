@@ -1,6 +1,6 @@
 <?php
 //Post API
-include("db_info.php");
+include("dbinfo.php");
 
 $amount = $_POST["amount"];
 $rate = $_POST["rate"];
