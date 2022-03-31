@@ -3,6 +3,7 @@ package com.example.currencyconverter_team;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,11 +20,30 @@ public class MainActivity2 extends AppCompatActivity {
     EditText amount;
     TextView result;
 
+    public class DownloadTask extends AsyncTask<String, void, String>{
 
+        @Override
+        protected String doInBackground(String... urls) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        String url="http://localhost/Server.api1.php";
+
+        DownloadTask task = new DownloadTask();
+        task.execute(url);
+
+
+
         Intent x = getIntent();
         radioGrp= (RadioGroup) findViewById(R.id.radioGroup);
         amount= (EditText)  findViewById(R.id.amount);
