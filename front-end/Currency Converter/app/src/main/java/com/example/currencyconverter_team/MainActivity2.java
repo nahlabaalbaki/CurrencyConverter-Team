@@ -84,8 +84,8 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        String amount = ;//get the amount from the view
-        String url="http://localhost/Server/api1.php?amount =" + amount;
+        String amount1 = "44";//get the amount from the view
+        String url="http://localhost/Server/api1.php?amount =" + amount1;
 
         DownloadTask task = new DownloadTask();
         task.execute(url);
