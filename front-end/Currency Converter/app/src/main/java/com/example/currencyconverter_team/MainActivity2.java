@@ -66,10 +66,11 @@ public class MainActivity2 extends AppCompatActivity {
             Log.i("Result", s);
 
             //Handle the data(fetch and convert string s to json)
-
+            //Use this function to post the rate on the screen from the website lirarate.com
             try {
                 JSONObject json = new JSONObject(s);
                 String created_at = json.getString("created_at");
+                Log.i("created_at",created_at);
 
             }catch(Exception e){
 
@@ -83,7 +84,8 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        String url="http://localhost/Server/api1.php";
+        String amount = ;//get the amount from the view
+        String url="http://localhost/Server/api1.php?amount =" + amount;
 
         DownloadTask task = new DownloadTask();
         task.execute(url);
