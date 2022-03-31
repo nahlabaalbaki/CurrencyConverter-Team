@@ -36,17 +36,26 @@ public class MainActivity2 extends AppCompatActivity {
             HttpURLConnection http;
 
             try{
+                //Reading json Objects from API
                 url = new URL(urls[0]);
                 http = (HttpURLConnection) url.openConnection(); // connection established between our application and API
                 InputStream in = http.getInputStream();
                 InputStreamReader reader = new InputStreamReader(in); // used to read the output of the API
-                int data =  reader.read(); 
+                int data =  reader.read();
+
+                while(data != -1){
+                    char current = (char) data; // parse each character
+                    result += current; //add this character to array
+                    data =reader.read(); //Data is changed not to run into infinite loop (not optimal solution)
+
+                }
             }
             catch(Exception e){
-
+                e.printStackTrace();
+                return null;
             }
 
-            return null;
+            return result;
         }
 
         @Override
