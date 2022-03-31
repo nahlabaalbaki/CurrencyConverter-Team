@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
     EditText amount;
     TextView result;
 
-    public class DownloadTask extends AsyncTask<String, void, String>{
+    public class DownloadTask extends AsyncTask<String, Void, String>{
 
         @Override
         protected String doInBackground(String... urls) {
@@ -59,7 +62,19 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(String s) { // We get the string returned from the function above
+            Log.i("Result", s);
+
+            //Handle the data(fetch and convert string s to json)
+
+            try {
+                JSONObject json = new JSONObject(s);
+                String created_at = json.getString("created_at");
+
+            }catch(Exception e){
+
+            }
+
             super.onPostExecute(s);
         }
     }
