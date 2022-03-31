@@ -1,5 +1,5 @@
 <?php
-
+// Get API
 include("db_info.php");
 
 $query = $mysqli->prepare("SELECT * FROM courses;");
