@@ -79,6 +79,7 @@ public class MainActivity2 extends AppCompatActivity {
             try{
 //
                 JSONObject json = new JSONObject(s);
+
                 String amount_result = json.getString("result");
                 String currency= json.getString("currency");
                 if (currency.equalsIgnoreCase("lbp")){
@@ -131,6 +132,8 @@ public class MainActivity2 extends AppCompatActivity {
                 }
 
 
+
+
             }catch(Exception e){
                 e.printStackTrace();
 
@@ -144,15 +147,6 @@ public class MainActivity2 extends AppCompatActivity {
         protected void onPostExecute(String s){
             super.onPostExecute(s);
 
-            try{
-
-                JSONObject json = new JSONObject(s);
-                String rate_result = json.getString("rate");
-                api_rate= Integer.parseInt(rate_result);
-                rate.setText("Rate: 1 USD at  " + rate_result + "L.L");
-            }catch(Exception e){
-                e.printStackTrace();
-            }
         }
 
     }
@@ -171,7 +165,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         String amount =  ""; //get the amount from the view
-        String url = "http://192.168.0.104/apis/api_lirarate.php";
+        String url = "http://192.168.1.13/apis/api_lirarate.php";
         DownloadTask2 task = new DownloadTask2();
         task.execute(url);
 
@@ -195,7 +189,7 @@ public class MainActivity2 extends AppCompatActivity {
 //                    DownloadTask2 task2 = new DownloadTask2();
 //                    task2.execute(url2);
                     String res=amnt.toString()+ " L.L";
-                    String url = "http://192.168.0.104/apis/test.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
+                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 
@@ -208,7 +202,7 @@ public class MainActivity2 extends AppCompatActivity {
                     amount_final= amount_res/22000;
                     Integer amnt= new Integer(amount_final);
                     String res=amnt.toString()+ " $";
-                    String url = "http://192.168.0.104/apis/test.php?amount="+amount_res+"&currency=usd";
+                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=usd";
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 

@@ -12,7 +12,7 @@ include("dbconnection.php");
 
 $amount= $_GET["amount"];
 $currency= $_GET["currency"];
-$rate= 20000;
+$rate= $_GET["rate"];
 
 if ($currency=="lbp"){
 $result=  $amount*$rate;
@@ -30,6 +30,8 @@ $query->execute();
 $response = [];
 $response["amount_result"]=$amount; 
 $response["currency"]= $currency;
+$response["rate"]= $rate;
+
 $response["result"]= $result; 
  $json_response = json_encode($response);
 echo $json_response;
