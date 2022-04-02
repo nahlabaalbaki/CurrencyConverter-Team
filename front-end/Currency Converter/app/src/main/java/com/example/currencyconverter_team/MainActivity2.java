@@ -30,7 +30,9 @@ public class MainActivity2 extends AppCompatActivity {
     RadioButton usd;
     EditText amount;
     TextView result;
+    TextView rate;
     String result2 = "";
+    int api_rate;
 
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -101,61 +103,59 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-    //    public class DownloadTask2 extends AsyncTask<String, Void, String> {
-//
-//        protected String doInBackground(String... urls){
-//            URL url;
-//            HttpURLConnection http;
-//
-//
-//            try{
-//                url = new URL(urls[0]);
-//
-//                http = (HttpURLConnection) url.openConnection();
-//                http.setConnectTimeout(30000);
-//
-//
-//                InputStream in = http.getInputStream();
-//
-//                InputStreamReader reader = new InputStreamReader(in);
-//
-//                int data = reader.read();
-//
-//                while( data != -1){
-//                    char current = (char) data;
-//                    result2 += current;
-//                    data = reader.read();
-//
-//                }
-//
-//
-//            }catch(Exception e){
-//                e.printStackTrace();
-//
-//                return null;
-//            }
-//
-//            return result2;
-//        }
-//
-//
-//        protected void onPostExecute(String s){
-//            super.onPostExecute(s);
-//
-//            try{
-//
-//                //  JSONObject json = new JSONObject(s);
-//                //  String created_at = json.getString("amount_result");
-//                Log.i("currency", s);
-//
-//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-//
-//            }catch(Exception e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
+        public class DownloadTask2 extends AsyncTask<String, Void, String> {
+
+        protected String doInBackground(String... urls){
+            URL url;
+            HttpURLConnection http;
+
+
+            try{
+                url = new URL(urls[0]);
+
+                http = (HttpURLConnection) url.openConnection();
+                http.setConnectTimeout(30000);
+
+
+                InputStream in = http.getInputStream();
+
+                InputStreamReader reader = new InputStreamReader(in);
+
+                int data = reader.read();
+
+                while( data != -1){
+                    char current = (char) data;
+                    result2 += current;
+                    data = reader.read();
+
+                }
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+
+                return null;
+            }
+
+            return result2;
+        }
+
+
+        protected void onPostExecute(String s){
+            super.onPostExecute(s);
+
+            try{
+
+                JSONObject json = new JSONObject(s);
+                String rate_result = json.getString("rate");
+                api_rate= Integer.parseInt(rate_result);
+                rate.setText("Rate: 1 USD at  " + rate_result + "L.L");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,10 +166,14 @@ public class MainActivity2 extends AppCompatActivity {
         lbp= (RadioButton) findViewById(R.id.lbp);
         usd= (RadioButton) findViewById(R.id.usd);
         result= (TextView) findViewById(R.id.result);
+        rate= (TextView) findViewById(R.id.rate);
 
 
 
         String amount =  ""; //get the amount from the view
+        String url = "http://192.168.0.104/apis/api_lirarate.php";
+        DownloadTask2 task = new DownloadTask2();
+        task.execute(url);
 
 
 
@@ -191,7 +195,7 @@ public class MainActivity2 extends AppCompatActivity {
 //                    DownloadTask2 task2 = new DownloadTask2();
 //                    task2.execute(url2);
                     String res=amnt.toString()+ " L.L";
-                    String url = "http://192.168.0.104/apis/test.php?amount="+amount_res+"&currency=lbp";
+                    String url = "http://192.168.0.104/apis/test.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 
