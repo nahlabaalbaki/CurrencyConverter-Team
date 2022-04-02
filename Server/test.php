@@ -32,7 +32,7 @@ $response["amount_result"]=$amount;
 $response["currency"]= $currency;
 $response["rate"]= $rate;
 
-$response["result"]= $result; 
+$response["result"]= strval($result); 
  $json_response = json_encode($response);
 echo $json_response;
 // Initialize curl

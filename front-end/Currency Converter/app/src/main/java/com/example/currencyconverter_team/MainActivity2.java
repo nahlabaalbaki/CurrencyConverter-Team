@@ -32,6 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
     TextView result;
     TextView rate;
     String result2 = "";
+    String result3 = "";
     int api_rate;
 
 
@@ -126,21 +127,29 @@ public class MainActivity2 extends AppCompatActivity {
 
                 while( data != -1){
                     char current = (char) data;
-                    result2 += current;
+                    result3 += current;
                     data = reader.read();
 
                 }
 
 
 
+                try{
 
+                    JSONObject json = new JSONObject(result3);
+                    String rate_result = json.getString("rate");
+                    api_rate= Integer.parseInt(rate_result);
+                    rate.setText("Rate: 1 USD at  " + rate_result + "L.L");
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }catch(Exception e){
                 e.printStackTrace();
 
                 return null;
             }
 
-            return result2;
+            return result3;
         }
 
 
@@ -156,7 +165,6 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         Intent x = getIntent();
         radioGrp= (RadioGroup) findViewById(R.id.radioGroup);
-        amount= (EditText)  findViewById(R.id.amount);
         lbp= (RadioButton) findViewById(R.id.lbp);
         usd= (RadioButton) findViewById(R.id.usd);
         result= (TextView) findViewById(R.id.result);
@@ -175,8 +183,11 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     public void convert(View view){
+        amount= (EditText)  findViewById(R.id.amount);
+        int amount_res= Integer.parseInt(amount.getText().toString());
+
+
         if (!amount.getText().toString().isEmpty()) {
-            int amount_res= Integer.parseInt(amount.getText().toString());
             int amount_final=0;
 
             if (radioGrp.getCheckedRadioButtonId() == -1) {
@@ -202,7 +213,7 @@ public class MainActivity2 extends AppCompatActivity {
                     amount_final= amount_res/22000;
                     Integer amnt= new Integer(amount_final);
                     String res=amnt.toString()+ " $";
-                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=usd";
+                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=usd&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 
