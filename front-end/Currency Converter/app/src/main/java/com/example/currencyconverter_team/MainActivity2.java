@@ -57,9 +57,9 @@ public class MainActivity2 extends AppCompatActivity {
                 int data = reader.read();
 
                 while( data != -1){
-                    char current = (char) data;
-                    result2 += current;
-                    data = reader.read();
+                    char current = (char) data; // parse each character
+                    result2 += current; //add this character to array
+                    data = reader.read(); //Data is changed not to run into infinite loop (not optimal solution)
 
                 }
 
