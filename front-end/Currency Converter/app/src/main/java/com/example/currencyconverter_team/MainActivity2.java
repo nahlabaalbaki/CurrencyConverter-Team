@@ -195,20 +195,24 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     public void convert(View view){
+        //We start by getting the amount entered by the user;
         amount= (EditText)  findViewById(R.id.amount);
         int amount_res= Integer.parseInt(amount.getText().toString());
 
-
+        //if the user's input is not empty, we proceed with the following:
         if (!amount.getText().toString().isEmpty()) {
             int amount_final=0;
-
+            //The radio buttons are usede to select the currency for which the user
+            //wishes to convert the amount entered to.
+            //If no button is selected, the application toasts a msg asking the user
+            //to select one currency;
             if (radioGrp.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(getApplicationContext(), "Please check a currency", Toast.LENGTH_LONG).show();
             } else {
                 if(lbp.isChecked()){
-                    amount_final= amount_res*22000;
-                    Integer amnt= new Integer(amount_final);
-                    String res=amnt.toString()+ " L.L";
+                    //we then create a new DownloadTask which is reponsible for gathering the
+                    //user's input (as mentionned above) and sending it in the url to  getAmount.php
+                    //which returns the final result and displays it to the screen.
                     String url = "http://192.168.1.13/apis/getAmount.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
@@ -219,9 +223,8 @@ public class MainActivity2 extends AppCompatActivity {
                 }
                 else
                 {
-                    amount_final= amount_res/22000;
-                    Integer amnt= new Integer(amount_final);
-                    String res=amnt.toString()+ " $";
+
+                    //Same as above but in the case the currency is in USD.
                     String url = "http://192.168.1.13/apis/getAmount.php?amount="+amount_res+"&currency=usd&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
@@ -231,6 +234,8 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         }
+
+        //If the user did not enter an amount, a message appears requesting the user to enter an amount;
         else {
             Toast.makeText(getApplicationContext(), "Please enter an amount", Toast.LENGTH_LONG).show();
             result.setText("");
