@@ -10,7 +10,7 @@ curl_setopt($ch, CURLOPT_URL,
     curl_setopt($ch, CURLOPT_URL,  
     
 
-    'https://lirarate.org/wp-json/lirarate/v2/rates?currency=LBP&_ver=t20224216');
+    'https://lirarate.org/wp-json/lirarate/v2/rates?currency=LBP&_ver=t20224321');
 // Return Transfer True
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
  
