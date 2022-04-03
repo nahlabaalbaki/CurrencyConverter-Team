@@ -36,6 +36,8 @@ public class MainActivity2 extends AppCompatActivity {
     int api_rate;
 
 
+
+    //the class DownloadTask is responsible for sending the user's input to
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... urls){
@@ -93,8 +95,6 @@ public class MainActivity2 extends AppCompatActivity {
                     result.setText("Result : " + amount_result + " $");
 
                 }
-                Log.i("amount", amount_result);
-                Toast.makeText(getApplicationContext(), amount_result, Toast.LENGTH_LONG).show();
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -105,6 +105,8 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
+
+    //Download task2 is responsible for getting the exchange rate from api_lirarate.php
 
         public class DownloadTask2 extends AsyncTask<String, Void, String> {
 
@@ -137,6 +139,9 @@ public class MainActivity2 extends AppCompatActivity {
 
                 try{
 
+
+                    //once the data is read and saved into result3, we turned it into a json object
+                    //and extracted the rate and saved it in api_rate, we also made it appear on screen.
                     JSONObject json = new JSONObject(result3);
                     String rate_result = json.getString("rate");
                     api_rate= Integer.parseInt(rate_result);
@@ -200,7 +205,7 @@ public class MainActivity2 extends AppCompatActivity {
                     amount_final= amount_res*22000;
                     Integer amnt= new Integer(amount_final);
                     String res=amnt.toString()+ " L.L";
-                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
+                    String url = "http://192.168.1.13/apis/getAmount.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 
@@ -213,7 +218,7 @@ public class MainActivity2 extends AppCompatActivity {
                     amount_final= amount_res/22000;
                     Integer amnt= new Integer(amount_final);
                     String res=amnt.toString()+ " $";
-                    String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=usd&rate=" + api_rate;
+                    String url = "http://192.168.1.13/apis/getAmount.php?amount="+amount_res+"&currency=usd&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
                     task.execute(url);
 
