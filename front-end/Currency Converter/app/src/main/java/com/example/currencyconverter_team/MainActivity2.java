@@ -37,7 +37,10 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-    //the class DownloadTask is responsible for sending the user's input to
+    //the class DownloadTask is responsible for sending the user's input and the rate (already received
+
+    // and saved into api_rate) to getAmount.php
+    //which in its turn returns the calculated amount.
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         protected String doInBackground(String... urls){
@@ -81,9 +84,10 @@ public class MainActivity2 extends AppCompatActivity {
 
             try{
                 //Handle the data(fetch and convert string s to json)
-                //Use this function to post the rate on the screen from the website lirarate.com
-                JSONObject json = new JSONObject(s);
 
+                JSONObject json = new JSONObject(s);
+                //extract the result calculated by getAmount.php from the json object
+                //and display it to string while modifying the text based on the currency used.
                 String amount_result = json.getString("result");
                 String currency= json.getString("currency");
                 if (currency.equalsIgnoreCase("lbp")){
