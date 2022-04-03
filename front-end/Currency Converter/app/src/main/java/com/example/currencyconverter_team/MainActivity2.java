@@ -173,7 +173,9 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-        String amount =  ""; //get the amount from the view
+
+        //we laod this url on create so that the exchange rate can appear on screen
+        // once activity 2 is initialized.
         String url = "http://192.168.1.13/apis/api_lirarate.php";
         DownloadTask2 task = new DownloadTask2();
         task.execute(url);
@@ -197,9 +199,6 @@ public class MainActivity2 extends AppCompatActivity {
                 if(lbp.isChecked()){
                     amount_final= amount_res*22000;
                     Integer amnt= new Integer(amount_final);
-//                    String url2 = "http://10.21.149.208/apis/test.php?currency=lbp";
-//                    DownloadTask2 task2 = new DownloadTask2();
-//                    task2.execute(url2);
                     String res=amnt.toString()+ " L.L";
                     String url = "http://192.168.1.13/apis/test.php?amount="+amount_res+"&currency=lbp&rate=" + api_rate;
                     DownloadTask task = new DownloadTask();
