@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view){
         Intent intent= new Intent(this,MainActivity2.class);
-        startActivity(intent);
+        startActivity(intent); //The following function is used in order to take the user to MainActivity2
+                               //upon clicking on the button "Start Converting"
 
     }
 }
