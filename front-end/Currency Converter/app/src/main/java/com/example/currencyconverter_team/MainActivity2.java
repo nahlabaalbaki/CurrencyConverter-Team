@@ -46,13 +46,13 @@ public class MainActivity2 extends AppCompatActivity {
             try{
                 url = new URL(urls[0]);
 
-                http = (HttpURLConnection) url.openConnection();
+                http = (HttpURLConnection) url.openConnection(); // connection established between our application and API
                 http.setConnectTimeout(30000);
 
 
                 InputStream in = http.getInputStream();
 
-                InputStreamReader reader = new InputStreamReader(in);
+                InputStreamReader reader = new InputStreamReader(in); // used to read the output of the API
 
                 int data = reader.read();
 
