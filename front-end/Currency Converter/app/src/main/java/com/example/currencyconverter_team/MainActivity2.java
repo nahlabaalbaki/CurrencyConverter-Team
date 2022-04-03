@@ -74,11 +74,12 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
 
-        protected void onPostExecute(String s){
+        protected void onPostExecute(String s){ // We get the string returned from the function above using onPostExecute
             super.onPostExecute(s);
 
             try{
-//
+                //Handle the data(fetch and convert string s to json)
+                //Use this function to post the rate on the screen from the website lirarate.com
                 JSONObject json = new JSONObject(s);
 
                 String amount_result = json.getString("result");
